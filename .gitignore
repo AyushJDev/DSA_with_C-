@@ -1,1 +1,16 @@
-*/.exe
+# Compiled binaries and executables (matches in any folder)
+*.out
+*.exe
+*.app
+*.o
+*.obj
+
+# VS Code directory and database caches
+.vscode/
+*.db
+*.db-shm
+*.db-wal
+
+# OS generated files
+.DS_Store
+Thumbs.db
