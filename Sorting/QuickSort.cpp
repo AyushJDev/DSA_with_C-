@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void insert(vector<int>& arr, int lb, int ub )
+{   if(lb>ub)
+    return;
+    int lp=lb+1;
+    int rp=ub;
+    { 
+        while(lp<rp)
+        {
+            while(arr[lp]<arr[lb])
+            {
+                lp++;
+            }
+            while(arr[rp]>arr[lb])
+            {
+                rp--;
+            }
+            if(rp>lp)
+            swap(arr[lp],arr[rp]);
+        }    
+    }
+    swap(arr[rp],arr[lb]);
+    insert(arr,lb,rp-1);
+    insert(arr,rp+1,ub);
+    return;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    //cin.tie(NULL);
+    int n;
+    cout<<"Enter the Size of the Array : ";
+    if(!(cin>>n)||n<=0)
+    {
+        cout<<"Invalid Input";
+        return 0;
+    }
+    vector <int>arr(n);
+    cout<<"Enter the Values in the Array : ";
+    for(int i=0;i<n;i++)
+    cin>>arr[i];
+    insert(arr,0,n-1);
+    cout<<"Array after Sorting : ";
+    for(int i=0;i<n;i++)
+    cout<<arr[i]<<(i+1<n ? ", " : "\n");
+    return 0;
+}
