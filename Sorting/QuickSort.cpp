@@ -2,22 +2,22 @@
 using namespace std;
 
 void insert(vector<int>& arr, int lb, int ub )
-{   if(lb>ub)
+{   if(lb>=ub)
     return;
-    int lp=lb+1;
+    int lp=lb;
     int rp=ub;
     { 
-        while(lp<rp)
+        int i=lb+1;
+        while(lp<=rp)
         {
-            while(arr[lp]<arr[lb])
+            while(arr[i]<arr[lp] && lp<rp)
             {
                 lp++;
             }
-            while(arr[rp]>arr[lb])
+            while(arr[i]>=arr[rp] && rp>=lp)
             {
                 rp--;
             }
-            if(rp>lp)
             swap(arr[lp],arr[rp]);
         }    
     }
@@ -35,7 +35,7 @@ int main()
     cout<<"Enter the Size of the Array : ";
     if(!(cin>>n)||n<=0)
     {
-        cout<<"Invalid Input";
+        cout<<"Invalid Input \n";
         return 0;
     }
     vector <int>arr(n);
