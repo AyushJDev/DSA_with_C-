@@ -2,22 +2,25 @@
 using namespace std;
 
 void insert(vector<int>& arr, int lb, int ub )
-{   if(lb>=ub)
+
+{
+    if(ub-lb<0)
     return;
+    cout<<"Passed the if statement \n";
     int lp=lb;
     int rp=ub;
-    { 
-        int i=lb+1;
-        while(lp<=rp)
+    {  int i=lb+1;
+        while(lp<rp)
         {
-            while(arr[i]<arr[lp] && lp<rp)
+            while(arr[lb]>arr[lp] && lp<rp)
             {
                 lp++;
             }
-            while(arr[i]>=arr[rp] && rp>=lp)
+            while(arr[lb]<arr[rp] && rp>lp)
             {
                 rp--;
             }
+            if(lp<rp)
             swap(arr[lp],arr[rp]);
         }    
     }
@@ -29,8 +32,6 @@ void insert(vector<int>& arr, int lb, int ub )
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    //cin.tie(NULL);
     int n;
     cout<<"Enter the Size of the Array : ";
     if(!(cin>>n)||n<=0)
@@ -42,7 +43,9 @@ int main()
     cout<<"Enter the Values in the Array : ";
     for(int i=0;i<n;i++)
     cin>>arr[i];
+    cout<<"Function is being called for the first time \n";
     insert(arr,0,n-1);
+    cout<<"Function Has returned \n";
     cout<<"Array after Sorting : ";
     for(int i=0;i<n;i++)
     cout<<arr[i]<<(i+1<n ? ", " : "\n");
