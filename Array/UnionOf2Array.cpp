@@ -4,7 +4,7 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     int n1,n2,j=-1;
-    vector <int> inter;
+    vector <int> unionArr;
     cout<<"Enter the size of 1st and the second array : ";
     if(!(cin>>n1>>n2)||n1<0||n2<0)
     {
@@ -39,11 +39,11 @@ int main()
             {
                 if(arr1[i1]<=arr2[i2])
                 {
-                    inter.emplace_back(arr1[i1]);
+                    unionArr.emplace_back(arr1[i1]);
                     i1++;
                 }
                 else{
-                    inter.emplace_back(arr2[i2]);
+                    unionArr.emplace_back(arr2[i2]);
                     i2++;
                 }
                 j++;
@@ -52,18 +52,18 @@ int main()
             {
                 if(i1<n1 && arr1[i1]<=arr2[i2])
                 {
-                    if(arr1[i1]>inter[j])
+                    if(arr1[i1]>unionArr[j])
                     {
-                        inter.emplace_back(arr1[i1]);
+                        unionArr.emplace_back(arr1[i1]);
                         j++;
                     }
                     i1++;
                 }
                 else
                  {
-                    if(arr2[i2]>inter[j])
+                    if(arr2[i2]>unionArr[j])
                     {
-                        inter.emplace_back(arr2[i2]);
+                        unionArr.emplace_back(arr2[i2]);
                         j++;
                     }
                     i2++;
@@ -72,18 +72,18 @@ int main()
         } 
         while(i1<n1)
         {
-            if(arr1[i1]>inter[j])
+            if(arr1[i1]>unionArr[j])
             {
-                inter.emplace_back(arr1[i1]);
+                unionArr.emplace_back(arr1[i1]);
                 j++;
             }
             i1++;
         }
         while(i2<n2)
         {
-            if(arr2[i2]>inter[j])
+            if(arr2[i2]>unionArr[j])
             {
-                inter.emplace_back(arr2[i2]);
+                unionArr.emplace_back(arr2[i2]);
                 j++;
             }
             i2++;
@@ -91,7 +91,7 @@ int main()
     }
         cout<<"Union of the 2 array is : ";
         for(int i=0;i<=j;i++)
-        cout<<inter[i]<<(i<j?", ":"\n");
-        inter.clear();
+        cout<<unionArr[i]<<(i<j?", ":"\n");
+        unionArr.clear();
     return 0;
 }
